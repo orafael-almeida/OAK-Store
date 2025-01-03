@@ -13,6 +13,9 @@ const config: Config = {
         background: "var(--background)",
         primary: "var(--primary)",
       },
+      screens: {
+        lg2: "1200px",
+      },
     },
   },
   plugins: [],
