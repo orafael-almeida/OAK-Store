@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import TopBanner from "@/components/TopBanner";
 import { Space_Grotesk } from "next/font/google";
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "OAK Store - Produtos",
@@ -23,6 +24,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${spaceGrotesk.className} antialiased`}>
         <TopBanner />
+        <Navbar />
         {children}
       </body>
     </html>
