@@ -4,7 +4,7 @@ import { FaLinkedinIn } from "react-icons/fa6";
 
 const TopBanner = () => {
   return (
-    <div className="flex flex-col justify-center items-center md:flex-row md:justify-between md:font-normal text-sm bg-primary text-white font-bold text-center p-3 font-sm lg2:tracking-tighter gap-4">
+    <div className="flex flex-col justify-center items-center md:flex-row md:justify-between md:font-normal text-sm bg-primary text-white font-bold text-center p-3 font-sm tracking-tight lg2:tracking-tighter gap-4">
       <div className="hidden lg2:flex ml-4 gap-4">
         <span>Central Comercial</span>
         <Link href={"tel:55017981905881"}>(017) 98190-5881</Link>
