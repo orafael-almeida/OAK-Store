@@ -8,7 +8,6 @@ const FilterSelect = () => {
 
   function handleDropdown() {
     setDropdownIsOpen(!dropdownIsOpen);
-    console.log(dropdownIsOpen);
   }
 
   return (
