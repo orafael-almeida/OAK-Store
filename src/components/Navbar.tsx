@@ -20,8 +20,7 @@ const Navbar = () => {
             alt="OAK Logo"
             width={170}
             height={170}
-            objectFit="contain"
-            className="min"
+            style={{ objectFit: "contain" }}
           />
         </div>
 
