@@ -5,6 +5,7 @@ interface inputComponentProps {
   labelText?: string;
   required?: boolean;
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string | boolean;
 }
 
 const InputComponent = ({
@@ -14,6 +15,7 @@ const InputComponent = ({
   labelText,
   required,
   onChange,
+  value,
 }: inputComponentProps) => {
   return (
     <div className="mb-5">
@@ -27,6 +29,7 @@ const InputComponent = ({
         className="block w-full p-4 ps-4 text-sm text-white border border-gray-300 rounded-lg bg-primary focus:ring-emerald-500 focus:border-emerald-500 ring-1 focus:outline-none transition-colors"
         required={required}
         onChange={onChange}
+        value={typeof value === "boolean" ? value.toString() : value}
       />
     </div>
   );
