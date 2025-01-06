@@ -1,9 +1,14 @@
+// src/components/FilterSelect.tsx
 "use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaArrowDown, FaArrowUp, FaFilter } from "react-icons/fa";
 
-const FilterSelect = () => {
+interface FilterSelectProps {
+  onSort: (filter: string) => void;
+}
+
+const FilterSelect = ({ onSort }: FilterSelectProps) => {
   const [dropdownIsOpen, setDropdownIsOpen] = useState<boolean | null>(null);
 
   function handleDropdown() {
@@ -25,36 +30,36 @@ const FilterSelect = () => {
           <div className="absolute right-0 top-14 z-50 bg-emerald-800 text-white divide-y divide-gray-100 rounded-lg shadow drop-shadow-sm w-max">
             <ul className="py-2 text-sm flex flex-col">
               <li>
-                <a
-                  href="#"
+                <div
                   className="flex px-4 py-2 justify-center items-center gap-2 hover:bg-emerald-400"
+                  onClick={() => onSort("name-asc")}
                 >
                   Nome A-z
-                </a>
+                </div>
               </li>
               <li>
-                <a
-                  href="#"
+                <div
                   className="flex px-4 py-2 justify-center items-center gap-2 hover:bg-emerald-400 "
+                  onClick={() => onSort("name-desc")}
                 >
                   Nome Z-a
-                </a>
+                </div>
               </li>
               <li>
-                <a
-                  href="#"
+                <div
                   className="flex px-4 py-2 justify-center items-center gap-2 hover:bg-emerald-400 "
-                >
-                  Preço {<FaArrowUp />}
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#"
-                  className="flex px-4 py-2 justify-center items-center gap-2 hover:bg-emerald-400 "
+                  onClick={() => onSort("price-asc")}
                 >
                   Preço {<FaArrowDown />}
-                </a>
+                </div>
+              </li>
+              <li>
+                <div
+                  className="flex px-4 py-2 justify-center items-center gap-2 hover:bg-emerald-400 "
+                  onClick={() => onSort("price-desc")}
+                >
+                  Preço {<FaArrowUp />}
+                </div>
               </li>
             </ul>
           </div>

@@ -13,6 +13,7 @@ interface Items {
 
 interface ProductListProps {
   searchValue: string;
+  onSort: string;
 }
 
 const ITENS_MOCK = [
@@ -46,17 +47,40 @@ const ITENS_MOCK = [
   },
 ];
 
-const ProductList = ({ searchValue }: ProductListProps) => {
+const ProductList = ({ searchValue, onSort }: ProductListProps) => {
   const [itemsList, setItemsList] = useState<Partial<Items>[]>(ITENS_MOCK);
   const [filteredItems, setFilteredItems] =
     useState<Partial<Items>[]>(ITENS_MOCK);
 
   useEffect(() => {
-    const filteredList = itemsList.filter((item) =>
+    let filteredList = itemsList.filter((item) =>
       item.title?.toLowerCase().includes(searchValue.toLowerCase())
     );
+
+    if (onSort === "name-asc") {
+      filteredList = filteredList.sort((a, b) =>
+        a.title!.localeCompare(b.title!)
+      );
+    } else if (onSort === "name-desc") {
+      filteredList = filteredList.sort((a, b) =>
+        b.title!.localeCompare(a.title!)
+      );
+    } else if (onSort === "price-asc") {
+      filteredList = filteredList.sort(
+        (a, b) =>
+          parseFloat(a.price!.replace(/\./g, "").replace(",", ".")) -
+          parseFloat(b.price!.replace(/\./g, "").replace(",", "."))
+      );
+    } else if (onSort === "price-desc") {
+      filteredList = filteredList.sort(
+        (a, b) =>
+          parseFloat(b.price!.replace(/\./g, "").replace(",", ".")) -
+          parseFloat(a.price!.replace(/\./g, "").replace(",", "."))
+      );
+    }
+
     setFilteredItems(filteredList);
-  }, [searchValue, itemsList]);
+  }, [searchValue, onSort, itemsList]);
 
   function handleRemoveItem(id: number) {
     const newItemsList = itemsList.filter((item) => item.id !== id);

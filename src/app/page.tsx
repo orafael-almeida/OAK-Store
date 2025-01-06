@@ -11,6 +11,7 @@ import ItemEditForm from "@/components/ItemEditForm";
 export default function Home() {
   const [searchValue, setSearchValue] = useState<string>("");
   const [editFormIsOpen, setEditItemIsOpen] = useState<boolean>(false);
+  const [onSort, setOnSort] = useState<string>("");
 
   function handleEditForm() {
     setEditItemIsOpen((prevstate) => !prevstate);
@@ -53,11 +54,13 @@ export default function Home() {
                   searchValue={searchValue}
                   setSearchValue={setSearchValue}
                 />
-                <FilterSelect />
+                <FilterSelect
+                  onSort={(sortValue: string) => setOnSort(sortValue)}
+                />
               </div>
 
               <div className="mt-8 h-max z-10 relative">
-                <ProductList searchValue={searchValue} />
+                <ProductList searchValue={searchValue} onSort={onSort} />
               </div>
             </div>
           )}
