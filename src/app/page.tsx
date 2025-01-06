@@ -5,16 +5,31 @@ import dots from "../../public/assets/images/dot-back.png";
 import { FaPlus } from "react-icons/fa";
 import SearchInput from "@/components/SearchInput";
 import FilterSelect from "@/components/FilterSelect";
-import ProductList from "@/components/ProductList";
+import ProductList, { Items } from "@/components/ProductList";
 import ItemEditForm from "@/components/ItemEditForm";
 
 export default function Home() {
   const [searchValue, setSearchValue] = useState<string>("");
-  const [editFormIsOpen, setEditItemIsOpen] = useState<boolean>(false);
   const [onSort, setOnSort] = useState<string>("");
+  const [editFormIsOpen, setEditItemIsOpen] = useState<boolean>(false);
+  const [selectedItem, setSelectedItem] = useState<Partial<Items> | null>(null);
+
+  console.log("Item no estado: ", selectedItem);
 
   function handleEditForm() {
     setEditItemIsOpen((prevstate) => !prevstate);
+  }
+
+  function selectItem(item: Partial<Items> = {}) {
+    setSelectedItem(item);
+  }
+
+  function cancel() {
+    setSelectedItem(null);
+  }
+
+  function createItem() {
+    console.log("executou o createItem");
   }
 
   return (
@@ -36,14 +51,23 @@ export default function Home() {
         </h3>
         <div className="z-10 relative">
           {editFormIsOpen ? (
-            <ItemEditForm setEditItemIsOpen={setEditItemIsOpen} />
+            <ItemEditForm
+              item={selectedItem as Items}
+              setEditItemIsOpen={setEditItemIsOpen}
+              editItem={setSelectedItem}
+              cancel={cancel}
+              createItem={createItem}
+            />
           ) : (
             <div>
               <div className="py-2 mt-4 flex justify-end items-center z-10">
                 <button
                   type="button"
                   className="flex justify-center items-center gap-2 text-white font-semibold bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br shadow-lg shadow-green-500/50 rounded-lg text-xs px-1.5 py-2.5 text-center"
-                  onClick={handleEditForm}
+                  onClick={() => {
+                    handleEditForm();
+                    selectItem({ id: Math.random() });
+                  }}
                 >
                   <FaPlus />
                   NOVO
@@ -60,7 +84,13 @@ export default function Home() {
               </div>
 
               <div className="mt-8 h-max z-10 relative">
-                <ProductList searchValue={searchValue} onSort={onSort} />
+                <ProductList
+                  searchValue={searchValue}
+                  onSort={onSort}
+                  handleEditForm={handleEditForm}
+                  selectItem={selectItem}
+                  selectedItem={selectedItem}
+                />
               </div>
             </div>
           )}

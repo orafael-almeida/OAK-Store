@@ -3,10 +3,10 @@
 import { useEffect, useState } from "react";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 
-interface Items {
+export interface Items {
   id: number;
   title: string;
-  description: string;
+  description?: string;
   price: string;
   available: boolean;
 }
@@ -14,6 +14,9 @@ interface Items {
 interface ProductListProps {
   searchValue: string;
   onSort: string;
+  handleEditForm: () => void;
+  selectItem: (item: Items) => void;
+  selectedItem: Partial<Items> | null;
 }
 
 const ITENS_MOCK = [
@@ -47,10 +50,15 @@ const ITENS_MOCK = [
   },
 ];
 
-const ProductList = ({ searchValue, onSort }: ProductListProps) => {
-  const [itemsList, setItemsList] = useState<Partial<Items>[]>(ITENS_MOCK);
-  const [filteredItems, setFilteredItems] =
-    useState<Partial<Items>[]>(ITENS_MOCK);
+const ProductList = ({
+  searchValue,
+  onSort,
+  handleEditForm,
+  selectItem,
+  selectedItem,
+}: ProductListProps) => {
+  const [itemsList, setItemsList] = useState<Items[]>(ITENS_MOCK);
+  const [filteredItems, setFilteredItems] = useState<Items[]>(ITENS_MOCK);
 
   useEffect(() => {
     let filteredList = itemsList.filter((item) =>
@@ -87,6 +95,13 @@ const ProductList = ({ searchValue, onSort }: ProductListProps) => {
     setItemsList(newItemsList);
   }
 
+  function createItem() {
+    const itemExists = itemsList.find((item) => item.id === selectedItem?.id);
+    if (itemExists) {
+      console.log("Existe o usuario");
+    }
+  }
+
   return (
     <div className="flex flex-col justify-center gap-2 drop-shadow-sm">
       {filteredItems.map((item) => (
@@ -118,8 +133,14 @@ const ProductList = ({ searchValue, onSort }: ProductListProps) => {
           </div>
 
           <div className="flex gap-2">
-            <button className="flex h-4.5 w-4.5 sm:h-6 sm:w-6 items-center justify-center hover:text-blue-500">
-              <FiEdit className="h-full w-full" />
+            <button
+              className="flex h-4.5 w-4.5 sm:h-6 sm:w-6 items-center justify-center hover:text-blue-500"
+              onClick={handleEditForm}
+            >
+              <FiEdit
+                className="h-full w-full"
+                onClick={() => selectItem(item)}
+              />
             </button>
             <button
               className="flex h-4.5 w-4.5 sm:h-6 sm:w-6 items-center justify-center hover:text-red-500"
