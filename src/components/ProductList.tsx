@@ -20,7 +20,7 @@ const ITENS_MOCK = [
     id: 1,
     title: "Iphone 15",
     description: "Iphone 15 novo na caixa",
-    price: "5.000,00",
+    price: "5.200,00",
     available: true,
   },
   {
@@ -32,9 +32,9 @@ const ITENS_MOCK = [
   },
   {
     id: 3,
-    title: "Iphone 17",
+    title: "Iphone 14",
     description: "Iphone 17 novo",
-    price: "9.800,00",
+    price: "4.600,00",
     available: false,
   },
   {
