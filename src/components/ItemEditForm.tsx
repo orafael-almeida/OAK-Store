@@ -32,6 +32,7 @@ const ItemEditForm = ({
         currency: "BRL",
       }).format(numericValue / 100);
       e.target.value = formattedValue;
+      return e.target.value;
     } else {
       e.target.value = "";
     }
@@ -39,7 +40,7 @@ const ItemEditForm = ({
 
   return (
     <div className="py-10 z-10">
-      <form className="max-w-sm mx-auto">
+      <form className="max-w-sm mx-auto" onSubmit={handleCreateItem}>
         <InputComponent
           type="text"
           id="name"
@@ -66,7 +67,8 @@ const ItemEditForm = ({
           value={item.price ?? ""}
           onChange={(e) => {
             currencyFormatter(e);
-            editItem({ ...item, price: e.target.value });
+            const formattedPrice = e.target.value.replace(/[^0-9.,]/g, "");
+            editItem({ ...item, price: formattedPrice });
           }}
         />
 
@@ -83,7 +85,6 @@ const ItemEditForm = ({
             type="submit"
             title="Salvar"
             classNameColor="bg-emerald-700 hover:bg-emerald-800"
-            onClick={() => handleCreateItem}
           />
           <ButtonComponent
             type="button"
