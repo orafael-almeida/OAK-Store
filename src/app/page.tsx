@@ -13,7 +13,7 @@ export default function Home() {
   const [onSort, setOnSort] = useState<string>("");
   const [editFormIsOpen, setEditItemIsOpen] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<Partial<Items> | null>(null);
-  const [item, setItem] = useState<Partial<Items> | null>(null);
+  const [item, setItem] = useState<Items | null>(null);
 
   function handleEditForm() {
     setEditItemIsOpen((prevstate) => !prevstate);
@@ -28,7 +28,9 @@ export default function Home() {
   }
 
   function createItem() {
-    setItem(selectedItem);
+    if (selectedItem && selectedItem.id !== undefined) {
+      setItem(selectedItem as Items);
+    }
     setEditItemIsOpen(false);
   }
 
