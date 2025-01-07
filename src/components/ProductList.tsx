@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
 
 export interface Items {
@@ -16,7 +16,7 @@ interface ProductListProps {
   onSort: string;
   handleEditForm: () => void;
   selectItem: (item: Items) => void;
-  selectedItem: Partial<Items> | null;
+  newItem: Items | null;
 }
 
 const ITENS_MOCK = [
@@ -55,51 +55,58 @@ const ProductList = ({
   onSort,
   handleEditForm,
   selectItem,
-  selectedItem,
+  newItem,
 }: ProductListProps) => {
   const [itemsList, setItemsList] = useState<Items[]>(ITENS_MOCK);
   const [filteredItems, setFilteredItems] = useState<Items[]>(ITENS_MOCK);
+  const prevNewItemRef = useRef<Items | null>(null);
 
   useEffect(() => {
+    if (newItem && newItem !== prevNewItemRef.current) {
+      prevNewItemRef.current = newItem;
+      const itemExists = itemsList.find((item) => item.id === newItem.id);
+      if (itemExists) {
+        const newItems = itemsList.map((item) => {
+          return item.id === newItem.id ? newItem : item;
+        });
+        setItemsList(newItems);
+      } else {
+        setItemsList([...itemsList, newItem]);
+      }
+    }
+
     let filteredList = itemsList.filter((item) =>
-      item.title?.toLowerCase().includes(searchValue.toLowerCase())
+      item.title.toLowerCase().includes(searchValue.toLowerCase())
     );
 
     if (onSort === "name-asc") {
       filteredList = filteredList.sort((a, b) =>
-        a.title!.localeCompare(b.title!)
+        a.title.localeCompare(b.title)
       );
     } else if (onSort === "name-desc") {
       filteredList = filteredList.sort((a, b) =>
-        b.title!.localeCompare(a.title!)
+        b.title.localeCompare(a.title)
       );
     } else if (onSort === "price-asc") {
       filteredList = filteredList.sort(
         (a, b) =>
-          parseFloat(a.price!.replace(/\./g, "").replace(",", ".")) -
-          parseFloat(b.price!.replace(/\./g, "").replace(",", "."))
+          parseFloat(a.price.replace(/\./g, "").replace(",", ".")) -
+          parseFloat(b.price.replace(/\./g, "").replace(",", "."))
       );
     } else if (onSort === "price-desc") {
       filteredList = filteredList.sort(
         (a, b) =>
-          parseFloat(b.price!.replace(/\./g, "").replace(",", ".")) -
-          parseFloat(a.price!.replace(/\./g, "").replace(",", "."))
+          parseFloat(b.price.replace(/\./g, "").replace(",", ".")) -
+          parseFloat(a.price.replace(/\./g, "").replace(",", "."))
       );
     }
 
     setFilteredItems(filteredList);
-  }, [searchValue, onSort, itemsList]);
+  }, [searchValue, onSort, itemsList, newItem]);
 
   function handleRemoveItem(id: number) {
     const newItemsList = itemsList.filter((item) => item.id !== id);
     setItemsList(newItemsList);
-  }
-
-  function createItem() {
-    const itemExists = itemsList.find((item) => item.id === selectedItem?.id);
-    if (itemExists) {
-      console.log("Existe o usuario");
-    }
   }
 
   return (
@@ -144,7 +151,7 @@ const ProductList = ({
             </button>
             <button
               className="flex h-4.5 w-4.5 sm:h-6 sm:w-6 items-center justify-center hover:text-red-500"
-              onClick={() => handleRemoveItem(item.id!)}
+              onClick={() => handleRemoveItem(item.id)}
             >
               <FiTrash2 className="h-full w-full" />
             </button>

@@ -13,8 +13,7 @@ export default function Home() {
   const [onSort, setOnSort] = useState<string>("");
   const [editFormIsOpen, setEditItemIsOpen] = useState<boolean>(false);
   const [selectedItem, setSelectedItem] = useState<Partial<Items> | null>(null);
-
-  console.log("Item no estado: ", selectedItem);
+  const [item, setItem] = useState<Partial<Items> | null>(null);
 
   function handleEditForm() {
     setEditItemIsOpen((prevstate) => !prevstate);
@@ -29,7 +28,8 @@ export default function Home() {
   }
 
   function createItem() {
-    console.log("executou o createItem");
+    setItem(selectedItem);
+    setEditItemIsOpen(false);
   }
 
   return (
@@ -89,7 +89,7 @@ export default function Home() {
                   onSort={onSort}
                   handleEditForm={handleEditForm}
                   selectItem={selectItem}
-                  selectedItem={selectedItem}
+                  newItem={item}
                 />
               </div>
             </div>
