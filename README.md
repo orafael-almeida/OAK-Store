@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+<div align="center">
+  <br />
+    <a href="#" target="_blank">
+      <img src="https://github.com/orafael-almeida/OAK-Store/blob/main/public/readme-img.png?raw=true" alt="Project Banner">
+    </a>
+  <br />
 
-## Getting Started
+  <div>
+    <img src="https://img.shields.io/badge/-Next_JS-black?style=for-the-badge&logoColor=white&logo=next.js&color=black" alt="Next;js" />
+    <img src="https://img.shields.io/badge/-React_JS-black?style=for-the-badge&logoColor=white&logo=react&color=61DAFB" alt="React.js" />
+    <img src="https://img.shields.io/badge/-Tailwind_CSS-black?style=for-the-badge&logoColor=white&logo=tailwindcss&color=06B6D4" alt="TailwindCSS" />
+  </div>
+<br/><br/></br>
+ 
+  <h1 align="center">Oak Store</h1>
 
-First, run the development server:
+   <div align="center">
+     Sistema de gerenciamento de produtos
+    </div>
+</div>
+
+## 📋 <a name="table">Sumary</a>
+
+1. 🚀 [Introdução](#introduction)
+2. ⚙️ [Tech Stack](#tech-stack)
+3. 🔋 [Features](#features)
+4. 💻 [Quick Start](#quick-start)
+5. 📅 [Releases](#versions)
+6. 👥 [Authors](#authors)
+
+## <a name="introduction">🤖 Introdução</a>
+
+
+Oak Store é um sistema de gerenciamento de produtos robusto e eficiente, projetado para facilitar o controle de inventário e operações comerciais. Com recursos abrangentes de cadastro, atualização, leitura e exclusão de produtos, a plataforma oferece uma interface intuitiva e amigável, permitindo que os usuários gerenciem seus produtos de maneira eficaz e segura.
+
+
+## <a name="tech-stack">⚙️ Tech Stack</a>
+
+- HTML / CSS
+- React.js
+- Next.js
+- Tailwind CSS
+
+## <a name="features">🔋 Recursos</a>
+
+- **Totalmente Responsivo**: Adaptação perfeita a todos os dispositivos, garantindo uma experiência consistente em qualquer plataforma.
+
+- **Gerenciamento de Produtos e Estoque**: Funcionalidades completas para adicionar, editar, monitorar e excluir produtos e inventário em tempo real.
+
+- **SEO Avançado e Otimização de Performance**: Melhor visibilidade nos motores de busca e tempos de carregamento otimizados para uma experiência rápida e acessível.
+
+- **Interface Amigável e Bonita**: Design intuitivo e atraente, proporcionando uma experiência de usuário agradável e eficiente.
+
+## <a name="quick-start">🤸 Como usar</a>
+
+Para iniciar o projeto, siga os seguintes passos em seu dispositivo:
+
+**00 - Pré-requisitos**
+
+Para usar este projeto você deve ter instalado previamente os seguintes pacotes:
+
+- [Git](https://git-scm.com/)
+- [Node.js](https://nodejs.org/en)
+- [npm](https://www.npmjs.com/) (Node Package Manager ou similar)
+  <br/><br/>
+
+**01 - Clonar o Repositório**
+
+```bash
+git clone https://github.com/orafael-almeida/OAK-Store
+cd cd OAK-Store
+```
+
+**02 - Instalação de Dependências**
+
+Instalar ou atualizar as dependências do projeto utilizando npm:
+
+```bash
+npm install
+```
+
+**03 - Rodar o Projeto**
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abrir [http://localhost:3000](http://localhost:3000) no seu navegador.
+Por favor, verifique se a porta está correta.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## <a name="versions">📅 Versões</a>
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- 0.1.0
+  - The first proper release  
+- 0.0.1
+  - Initial work
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## <a name="authors">👥 Autores</a>
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+<table style="border-collapse: collapse; table-layout: auto text-align: left;">
+
+  <tbody>
+    <tr>
+      <td style="padding: 10px; border: 1px solid #ddd;">
+        <img src="https://avatars.githubusercontent.com/u/173099475?v=4" width="60" style="border-radius: 50%; display: block; margin: 0 auto;">
+      </td>
+      <td style="padding: 10px; border: 1px solid #ddd;">Rafael Almeida</td>
+      <td style="padding: 10px; border: 1px solid #ddd;">
+        <a href="https://www.linkedin.com/in/orafael-almeida/" target="_blank">LinkedIn</a> |
+        <a href="https://github.com/orafael-almeida" target="_blank">GitHub</a>
+      </td>
+    </tr>
+  </tbody>
+</table>
